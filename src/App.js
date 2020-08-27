@@ -1,10 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+
+import MovieApp from './components/MovieApp'
 
 function App() {
   return (
     <div className="App">
-
+      <MovieApp />
     </div>
   );
 }
