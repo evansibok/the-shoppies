@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { FiSearch } from 'react-icons/fi'
+import { IoMdSearch } from 'react-icons/io'
+
+
 
 function MovieApp() {
   return (
@@ -10,7 +12,7 @@ function MovieApp() {
       <TitleSection className="title-section">
         <h5>Movie title</h5>
         <div className="search-con">
-          <FiSearch />
+          <IoMdSearch />
           <input type="search" placeholder="Search..." />
         </div>
       </TitleSection>
