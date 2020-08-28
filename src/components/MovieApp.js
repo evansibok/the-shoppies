@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { IoMdSearch } from 'react-icons/io'
 
+import MovieList from './MovieList'
+
 
 
 function MovieApp() {
@@ -21,34 +23,24 @@ function MovieApp() {
         <div className="results">
           <h4>Results for "ram"</h4>
           <ul>
-            <div className="result-list">
-              <li>Rambo (1999)</li>
-              <button type="button">Nominate</button>
-            </div>
-            <div className="result-list">
-              <li>Rambo (1999)</li>
-              <button type="button">Nominate</button>
-            </div>
-            <div className="result-list">
-              <li>Rambo (1999)</li>
-              <button type="button">Nominate</button>
-            </div>
-            <div className="result-list">
-              <li>Rambo (1999)</li>
-              <button type="button">Nominate</button>
-            </div>
-            <div className="result-list">
-              <li>Rambo (1999)</li>
-              <button type="button">Nominate</button>
-            </div>
-            <div className="result-list">
-              <li>Rambo (1999)</li>
-              <button type="button">Nominate</button>
-            </div>
+            <MovieList />
+            <MovieList />
+            <MovieList />
+            <MovieList />
+            <MovieList />
+            <MovieList />
+            <MovieList />
           </ul>
         </div>
         <div className="noms">
           <h4>Nominations</h4>
+          <ul>
+            <MovieList />
+            <MovieList />
+            <MovieList />
+            <MovieList />
+            <MovieList />
+          </ul>
         </div>
       </BottomSection>
     </Container>
@@ -141,25 +133,6 @@ const BottomSection = styled.section`
       height: 180px;
       overflow-y: scroll;
       padding-bottom: 1em;
-
-      .result-list {
-        display: flex;
-        margin-top: 1em;
-        font-size: 0.9rem;
-        align-items: center;
-
-        button {
-          margin-left: 1em;
-          border: none;
-          padding: 0.3em 1em;
-          border-radius: 3px;
-          font-size: 0.8rem;
-
-          &:hover {
-            cursor: pointer;
-          }
-        }
-      }
     }
   }
 
