@@ -1,12 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components'
 import { IoMdSearch } from 'react-icons/io'
 
-import MovieList from './MovieList'
+import actions from "../redux/actions/"
 
+import MovieCard from './MovieCard'
 
 
 function MovieApp() {
+  const { getAllMovies, setSearchFilter } = actions
+
+  const dispatch = useDispatch()
+  const state = useSelector(state => state.movies)
+  const movies = useSelector(state => state.movies.moviesList)
+  const searchVal = useSelector(state => state.movies.searchValue)
+  console.log('state', state)
+  console.log('movies state', movies)
+  console.log('searchVal', searchVal)
+
+  useEffect(() => {
+    dispatch(getAllMovies(searchVal))
+  }, [dispatch, getAllMovies, searchVal])
+
+
+  const handleSearchChange = (evt) => {
+    const { value } = evt.target
+    dispatch(setSearchFilter(value))
+  }
+
   return (
     <Container>
       <h3>The Shoppies</h3>
@@ -15,38 +37,62 @@ function MovieApp() {
         <h5>Movie title</h5>
         <div className="search-con">
           <IoMdSearch />
-          <input type="search" placeholder="Search..." />
+          <input
+            type="search"
+            name="searchTitle"
+            value={searchVal}
+            placeholder="Search..."
+            onChange={handleSearchChange}
+          />
         </div>
       </TitleSection>
 
       <BottomSection>
         <div className="results">
-          <h4>Results for "ram"</h4>
+          <h4>Results for: {`"${searchVal}"`}</h4>
           <ul>
-            <MovieList />
-            <MovieList />
-            <MovieList />
-            <MovieList />
-            <MovieList />
-            <MovieList />
-            <MovieList />
+            {
+              state.isLoading
+                ? (<p style={{
+                  fontSize: "30px",
+                  color: "#c1c1c1",
+                }}>Loading...</p>)
+                : movies.length === 0 ?
+                  (<div style={{
+                    fontSize: "20px",
+                    color: "#c1c1c1",
+                  }}>Please search movie above!</div>)
+                  : (movies && movies.map(movie => (
+                    <MovieCard key={movie.imdbID} movie={movie} />
+                  )))
+            }
           </ul>
         </div>
         <div className="noms">
           <h4>Nominations</h4>
           <ul>
-            <MovieList />
-            <MovieList />
-            <MovieList />
-            <MovieList />
-            <MovieList />
+            {/* <MovieCard />
+            <MovieCard />
+            <MovieCard />
+            <MovieCard />
+            <MovieCard /> */}
           </ul>
         </div>
       </BottomSection>
     </Container>
   )
 }
+// function mapStateToProps(state) {
+//   return {
+//     movieList: state.movies
+//   }
+// }
 
+
+// export default connect({
+//   mapStateToProps,
+//   actions
+// })(MovieApp)
 export default MovieApp
 
 const Container = styled.section`
@@ -59,7 +105,6 @@ const Container = styled.section`
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 3em;
 
   h3 {
     font-size: 1.3rem;
