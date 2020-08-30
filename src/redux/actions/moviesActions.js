@@ -8,19 +8,6 @@ export const setSearchFilter = (filterValue) => {
   }
 }
 
-// const getString = (searchValue) => {
-//   console.log('searchValue', searchValue)
-//   if (searchValue && typeof searchValue === undefined) {
-//     return "Batman"
-//   } else if (searchValue && searchValue === "") {
-//     return "Batman"
-//   } else if (searchValue && searchValue.length > 1) {
-//     return searchValue
-//   } else if (searchValue && searchValue.length === 1) {
-//     return "Batman"
-//   }
-//   return searchValue
-// }
 
 export const getAllMovies = (searchValue) => async (dispatch) => {
   console.log("typeOf searchValue", typeof searchValue)
@@ -31,7 +18,6 @@ export const getAllMovies = (searchValue) => async (dispatch) => {
   // more than one character
 
   const MOVIE = `http://www.omdbapi.com/?apikey=d563d6b0&type=movie&s=${searchValue}`
-  // const MOVIE = `http://www.omdbapi.com/?apikey=d563d6b0`
   console.log('get all movies start')
 
   dispatch({
@@ -41,7 +27,6 @@ export const getAllMovies = (searchValue) => async (dispatch) => {
   try {
     const allMovies = await fetch(MOVIE)
     const data = await allMovies.json()
-    console.log('result data', data)
 
     if (data.Error) {
       dispatch({
@@ -56,7 +41,6 @@ export const getAllMovies = (searchValue) => async (dispatch) => {
       })
     }
   } catch (data) {
-    console.log('Catch Error data', data.Error)
     dispatch({
       type: types.GET_ALL_MOVIES_FAILURE,
       payload: data.Error,

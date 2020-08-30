@@ -58,10 +58,10 @@ function MovieApp() {
                   color: "#c1c1c1",
                 }}>Loading...</p>)
                 : movies.length === 0 ?
-                  (<div style={{
+                  (<p style={{
                     fontSize: "20px",
                     color: "#c1c1c1",
-                  }}>Please search movie above!</div>)
+                  }}>Please search movie above!</p>)
                   : (movies && movies.map(movie => (
                     <MovieCard key={movie.imdbID} movie={movie} />
                   )))
@@ -189,5 +189,4 @@ const BottomSection = styled.section`
     padding: 1em;
     box-shadow: 0px 0px 18px -5px rgba(230,230,230,1);
   }
-
 `;
