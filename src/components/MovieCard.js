@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
@@ -10,7 +10,6 @@ const MovieCard = ({ movie }) => {
 
   const handleNominate = (evt) => {
     evt.preventDefault()
-    // setIsNominated(true)
     movie["isNominated"] = true
     dispatch(setNominatedMovie(movie))
   }
@@ -49,14 +48,21 @@ const MCard = styled.div`
     &.nominate {
       background-color: #10ba76;
       color: #fff;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &.nominated {
+      &:hover {
+        cursor: unset;
+      }
     }
 
     &:focus {
       outline: none;
     }
 
-    &:hover {
-      cursor: pointer;
-    }
   }
 `;

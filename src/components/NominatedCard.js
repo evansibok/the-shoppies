@@ -5,14 +5,13 @@ import styled from 'styled-components'
 
 import actions from '../redux/actions/'
 
-function NominatedCard({ movie, setIsNominated }) {
+function NominatedCard({ movie }) {
   const { removeNominatedMovie } = actions
 
   let dispatch = useDispatch()
 
   const handleRemoval = (evt) => {
     evt.preventDefault();
-    // setIsNominated(false)
     movie["isNominated"] = false
     dispatch(removeNominatedMovie(movie))
   }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components'
 import { IoMdSearch } from 'react-icons/io'
@@ -17,9 +17,6 @@ function MovieApp() {
   const movies = useSelector(state => state.movies.moviesList)
   const searchVal = useSelector(state => state.movies.searchValue)
   const nominatedMovies = useSelector(state => state.movies.nomMovies)
-
-  const [isNominated, setIsNominated] = useState(false)
-
 
   console.log('state', state)
   console.log('movies state', movies)
@@ -81,7 +78,7 @@ function MovieApp() {
           <ul>
             {
               nominatedMovies && nominatedMovies.map(movie => (
-                <NominatedCard key={movie.imdbID} movie={movie} setIsNominated={setIsNominated} />
+                <NominatedCard key={movie.imdbID} movie={movie} />
               ))
             }
           </ul>
