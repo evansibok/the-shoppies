@@ -8,6 +8,23 @@ export const setSearchFilter = (filterValue) => {
   }
 }
 
+export const setNominatedMovie = (movie) => {
+  console.log('action movie', movie)
+  return {
+    type: types.SET_NOMINATED_MOVIE,
+    payload: movie,
+  }
+}
+
+export const removeNominatedMovie = (movie) => {
+  console.log('removed movie', movie)
+  console.log('removed movie ID', movie.imdbID)
+  return {
+    type: types.REMOVE_NOMINATED_MOVIE,
+    payload: movie.imdbID,
+  }
+}
+
 
 export const getAllMovies = (searchValue) => async (dispatch) => {
   console.log("typeOf searchValue", typeof searchValue)
@@ -47,3 +64,4 @@ export const getAllMovies = (searchValue) => async (dispatch) => {
     })
   }
 }
+

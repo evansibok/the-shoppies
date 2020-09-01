@@ -1,6 +1,8 @@
 import {
   getAllMovies,
   setSearchFilter,
+  setNominatedMovie,
+  removeNominatedMovie,
 } from "./moviesActions"
 
 
@@ -8,4 +10,6 @@ import {
 export default {
   getAllMovies,
   setSearchFilter,
+  setNominatedMovie,
+  removeNominatedMovie
 }

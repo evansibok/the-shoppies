@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
+
 import actions from '../redux/actions/'
 
-const MovieCard = ({ movie }) => {
-  const { setNominatedMovie } = actions
+function NominatedCard({ movie, setIsNominated }) {
+  const { removeNominatedMovie } = actions
+
   let dispatch = useDispatch()
 
-  const handleNominate = (evt) => {
-    evt.preventDefault()
-    // setIsNominated(true)
-    movie["isNominated"] = true
-    dispatch(setNominatedMovie(movie))
+  const handleRemoval = (evt) => {
+    evt.preventDefault();
+    // setIsNominated(false)
+    movie["isNominated"] = false
+    dispatch(removeNominatedMovie(movie))
   }
 
   return (
@@ -20,17 +22,16 @@ const MovieCard = ({ movie }) => {
       <li>{movie.Title}{" "}{" "}({movie.Year})</li>
       <button
         type="button"
-        disabled={movie.isNominated ? true : false}
-        onClick={handleNominate}
-        className={movie.isNominated ? "" : "nominate"}
+        onClick={handleRemoval}
+        className=""
       >
-        {movie.isNominated ? "Nominated" : "Nominate"}
+        {"Remove"}
       </button>
     </MCard>
   )
 }
 
-export default MovieCard
+export default NominatedCard
 
 const MCard = styled.div`
   display: flex;
@@ -44,12 +45,7 @@ const MCard = styled.div`
     padding: 0.3em 1em;
     border-radius: 3px;
     font-size: 0.8rem;
-    color: #757575;
-
-    &.nominate {
-      background-color: #10ba76;
-      color: #fff;
-    }
+    color: #f92c4f;
 
     &:focus {
       outline: none;

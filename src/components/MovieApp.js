@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components'
 import { IoMdSearch } from 'react-icons/io'
@@ -6,6 +6,7 @@ import { IoMdSearch } from 'react-icons/io'
 import actions from "../redux/actions/"
 
 import MovieCard from './MovieCard'
+import NominatedCard from './NominatedCard'
 
 
 function MovieApp() {
@@ -15,9 +16,16 @@ function MovieApp() {
   const state = useSelector(state => state.movies)
   const movies = useSelector(state => state.movies.moviesList)
   const searchVal = useSelector(state => state.movies.searchValue)
+  const nominatedMovies = useSelector(state => state.movies.nomMovies)
+
+  const [isNominated, setIsNominated] = useState(false)
+
+
   console.log('state', state)
   console.log('movies state', movies)
   console.log('searchVal', searchVal)
+  console.log('nominatedMovies', nominatedMovies)
+
 
   useEffect(() => {
     dispatch(getAllMovies(searchVal))
@@ -71,28 +79,18 @@ function MovieApp() {
         <div className="noms">
           <h4>Nominations</h4>
           <ul>
-            {/* <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard />
-            <MovieCard /> */}
+            {
+              nominatedMovies && nominatedMovies.map(movie => (
+                <NominatedCard key={movie.imdbID} movie={movie} setIsNominated={setIsNominated} />
+              ))
+            }
           </ul>
         </div>
       </BottomSection>
     </Container>
   )
 }
-// function mapStateToProps(state) {
-//   return {
-//     movieList: state.movies
-//   }
-// }
 
-
-// export default connect({
-//   mapStateToProps,
-//   actions
-// })(MovieApp)
 export default MovieApp
 
 const Container = styled.section`
