@@ -1,38 +1,49 @@
 import * as types from "../types"
 
 export const setSearchFilter = (filterValue) => {
-  console.log('action setSearchFilter', filterValue)
   return {
     type: types.SET_FILTER_VALUE,
     payload: filterValue,
   }
 }
 
-export const setNominatedMovie = (movie) => {
-  console.log('action movie', movie)
-  return {
-    type: types.SET_NOMINATED_MOVIE,
-    payload: movie,
+export const setNominatedMovie = (movie) => (dispatch) => {
+  dispatch({
+    type: types.SET_NOMINATED_MOVIE_START
+  })
+
+  try {
+    dispatch({
+      type: types.SET_NOMINATED_MOVIE_SUCCESS,
+      payload: movie,
+    })
+  } catch (err) {
+    dispatch({
+      type: types.SET_NOMINATED_MOVIE_FAILURE,
+    })
   }
 }
 
-export const removeNominatedMovie = (movie) => {
-  console.log('removed movie', movie)
-  console.log('removed movie ID', movie.imdbID)
-  return {
-    type: types.REMOVE_NOMINATED_MOVIE,
-    payload: movie.imdbID,
+export const removeNominatedMovie = (movie) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_NOMINATED_MOVIE_START
+  })
+
+  try {
+    dispatch({
+      type: types.REMOVE_NOMINATED_MOVIE_SUCCESS,
+      payload: movie.imdbID,
+    })
+  } catch (err) {
+    dispatch({
+      type: types.REMOVE_NOMINATED_MOVIE_FAILURE,
+    })
   }
 }
 
 
 export const getAllMovies = (searchValue) => async (dispatch) => {
   console.log("typeOf searchValue", typeof searchValue)
-
-  // ""
-  // undefined
-  // one character
-  // more than one character
 
   const MOVIE = `http://www.omdbapi.com/?apikey=d563d6b0&type=movie&s=${searchValue}`
   console.log('get all movies start')

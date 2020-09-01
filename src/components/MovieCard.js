@@ -4,14 +4,18 @@ import styled from 'styled-components'
 
 import actions from '../redux/actions/'
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, nominatedMovies }) => {
   const { setNominatedMovie } = actions
   let dispatch = useDispatch()
 
   const handleNominate = (evt) => {
     evt.preventDefault()
     movie["isNominated"] = true
-    dispatch(setNominatedMovie(movie))
+    if (nominatedMovies.length === 5) {
+      alert("Maximum number of nominations added!")
+    } else {
+      dispatch(setNominatedMovie(movie))
+    }
   }
 
   return (

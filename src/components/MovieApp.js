@@ -68,7 +68,7 @@ function MovieApp() {
                     color: "#c1c1c1",
                   }}>Please search movie above!</p>)
                   : (movies && movies.map(movie => (
-                    <MovieCard key={movie.imdbID} movie={movie} />
+                    <MovieCard key={movie.imdbID} movie={movie} nominatedMovies={nominatedMovies} />
                   )))
             }
           </ul>
@@ -77,9 +77,14 @@ function MovieApp() {
           <h4>Nominations</h4>
           <ul>
             {
-              nominatedMovies && nominatedMovies.map(movie => (
-                <NominatedCard key={movie.imdbID} movie={movie} />
-              ))
+              (nominatedMovies.length === 0)
+                ? (<p style={{
+                  fontSize: "20px",
+                  color: "#c1c1c1",
+                }}>No nominations yet!</p>)
+                : nominatedMovies && nominatedMovies.map(movie => (
+                  <NominatedCard key={movie.imdbID} movie={movie} />
+                ))
             }
           </ul>
         </div>
@@ -94,7 +99,7 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   width: 900px;
-  height: 500px;
+  height: 550px;
   background-color: #efedef;
   padding: 2em 4em;
   border-radius: 10px;
