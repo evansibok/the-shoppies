@@ -5,7 +5,8 @@ import MovieApp from './components/MovieApp'
 function App() {
   return (
     <div className="App">
-      <MovieApp />
+      This is Shoppies
+      {/* <MovieApp /> */}
     </div>
   );
 }
