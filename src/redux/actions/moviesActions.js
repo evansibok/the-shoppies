@@ -44,7 +44,7 @@ export const removeNominatedMovie = (movie) => (dispatch) => {
 
 export const getAllMovies = (searchValue) => async (dispatch) => {
 
-  const MOVIE = `http://www.omdbapi.com/?apikey=d563d6b0&type=movie&s=${searchValue}`
+  const MOVIE = `https://www.omdbapi.com/?apikey=d563d6b0&type=movie&s=${searchValue}`
 
   dispatch({
     type: types.GET_ALL_MOVIES_START
