@@ -43,10 +43,8 @@ export const removeNominatedMovie = (movie) => (dispatch) => {
 
 
 export const getAllMovies = (searchValue) => async (dispatch) => {
-  console.log("typeOf searchValue", typeof searchValue)
 
   const MOVIE = `http://www.omdbapi.com/?apikey=d563d6b0&type=movie&s=${searchValue}`
-  console.log('get all movies start')
 
   dispatch({
     type: types.GET_ALL_MOVIES_START

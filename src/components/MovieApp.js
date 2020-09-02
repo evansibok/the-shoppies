@@ -18,11 +18,6 @@ function MovieApp() {
   const searchVal = useSelector(state => state.movies.searchValue)
   const nominatedMovies = useSelector(state => state.movies.nomMovies)
 
-  console.log('state', state)
-  console.log('movies state', movies)
-  console.log('searchVal', searchVal)
-  console.log('nominatedMovies', nominatedMovies)
-
 
   useEffect(() => {
     dispatch(getAllMovies(searchVal))
