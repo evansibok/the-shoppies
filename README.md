@@ -1,5 +1,7 @@
 # THE SHOPPIES
 
+## UX Developer Intern & Web Developer Intern Challenge - Summer 2021
+
 ### **Straight up movie awards for entrepreneurs**
 
 #### Technical Requirements
